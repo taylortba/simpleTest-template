@@ -11,6 +11,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: './'
   },
+    devServer:{
+        contentBase:'./',
+        publicPath: '/'
+    },
   module:{
   	rules:[{
   		test:/\.css$/,
@@ -40,11 +44,20 @@ module.exports = {
         use: [
             'file-loader'
         ]
+    },{
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+            loader: 'babel-loader',
+            options:{
+                presets: ['@babel/preset-env'],
+            }
+        }
     }]
   },
   plugins: [
       //在每次打包前清空生成的dist目录
-      new CleanWebpackPlugin(),
+      // new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
           //无默认，添加require的模板
           template: './src/index.html',
