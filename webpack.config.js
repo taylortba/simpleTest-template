@@ -11,6 +11,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: './'
   },
+  devServer: {
+    publicPath: '/'
+  },
   module:{
   	rules:[{
   		test:/\.css$/,
